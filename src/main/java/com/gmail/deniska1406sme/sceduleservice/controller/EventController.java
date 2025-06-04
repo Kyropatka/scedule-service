@@ -1,4 +1,4 @@
-package com.gmail.deniska1406sme.sceduleservice;
+package com.gmail.deniska1406sme.sceduleservice.controller;
 
 
 import com.gmail.deniska1406sme.sceduleservice.model.Event;
