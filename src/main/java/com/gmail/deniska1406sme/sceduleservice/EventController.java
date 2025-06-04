@@ -18,31 +18,31 @@ public class EventController {
         this.eventService = eventService;
     }
 
-    @GetMapping
+    @GetMapping("/find")
     public List<Event> findAll(@RequestParam Long userId) {
         return eventService.findAll(userId);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("find/{id}")
     public ResponseEntity<Event> findById(@PathVariable Long id) {
         return eventService.findById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public Event create(@RequestBody Event event) {
         return eventService.createEvent(event);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Event> update(@PathVariable Long id, @RequestBody Event event) {
         return eventService.findById(id)
                 .map(existing -> ResponseEntity.ok(eventService.updateEvent(id, event)))
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         if (eventService.findById(id).isPresent()) {
             eventService.deleteEvent(id);
